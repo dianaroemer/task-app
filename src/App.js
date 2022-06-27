@@ -9,10 +9,10 @@ class App extends Component {
 
       this.onClickBtn = this.onClickBtn.bind(this);
       this.pushToInputArr = this.pushToInputArr.bind(this);
-      // this.updateInput = this.updateInput.bind(this);
+      this.updateInput = this.updateInput.bind(this);
 
       this.state = {
-        input: '',
+        inputText: '',
         inputArr: ['test 1', 'test 2', 'test3'],
       };
   }
@@ -26,33 +26,32 @@ class App extends Component {
     console.log(this.state.inputArr)
   }
 
-  // updateInput(incoming) {
-  //   this.setState({
-  //     input: incoming,
-  //   })
-  //   console.log('Youve called updateInput!');
-  // }
+  updateInput(inputText) {
+    this.setState({
+      inputText: inputText,
+    })
+    // console.log('Updating Input: ' + this.state.inputText);
+    // console.log(this.state.inputText.target.value);
+  }
+
+
 
   onClickBtn(e) {
     e.preventDefault();
-    console.log('Button has been clicked!');
+    // console.log('Button has been clicked!');
     // console.log(e);
-    console.log(this.state.input);
-    console.log(e.target.form[0].value);
+    // console.log(this.state.input);
+    // console.log(e.target.form[0].value);
+    /*
     if(e.target.form[0].value !== '') {
       this.pushToInputArr(e.target.form[0].value);
+    } 
+    */
+
+    if(this.state.inputText !=='') {
+      this.pushToInputArr(this.state.inputText);
     }
   }
-
-  // inputArrToRows() {
-  //   this.state.inputArr.forEach((inputElement) => {
-      
-  //     this.state.rows.push(
-  //         <ListElement 
-  //           element={inputElement} />
-  //     );
-  //   });
-  // }
 
   render () {
     return (
@@ -61,8 +60,9 @@ class App extends Component {
           <h2>I am App.js, whats happening!</h2>
           <Overview title="Content Container" 
             onButtonClick={this.onClickBtn} 
-            inputArr={this.state.inputArr}/>
-            {/* // updateInput={this.updateInput}/> */}
+            inputArr={this.state.inputArr}
+            updateInput={this.updateInput}
+            input={this.state.inputText}/>
 
         </div>
 

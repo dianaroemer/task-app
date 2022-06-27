@@ -4,7 +4,15 @@ import reportWebVitals from '../reportWebVitals';
 class Overview extends Component {
     constructor(props) {
         super(props);
+
+        this.handleUpdateInput = this.handleUpdateInput.bind(this);
     }
+
+    handleUpdateInput(e) {
+        this.props.updateInput(e.target.value);
+    }
+
+
 
 
 
@@ -22,7 +30,9 @@ class Overview extends Component {
             <div className="Overview">
                 <h3>I am a component from Overview.js!</h3>
                 <form>
-                    <input className='inputField'></input>
+                    <input className='inputField'
+                        onChange={this.handleUpdateInput}
+                        value={this.props.inputText}></input>
                     <p></p>
                     <button onClick={this.props.onButtonClick}>Submit</button>
                 </form>
