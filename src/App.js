@@ -37,7 +37,6 @@ class App extends Component {
     e.preventDefault();
         
     if(this.state.task.text !== '') {
-      console.log(this.state.task);
       this.setState({
         inputArr: this.state.inputArr.concat(this.state.task),
         task: {
