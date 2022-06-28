@@ -10,6 +10,7 @@ class App extends Component {
 
       this.onClickBtn = this.onClickBtn.bind(this);
       this.updateInput = this.updateInput.bind(this);
+      this.deleteTask = this.deleteTask.bind(this);
 
       this.state = {
         inputArr: [
@@ -48,6 +49,12 @@ class App extends Component {
         },
       })
     }
+  }
+
+  deleteTask() {
+    // this.setState({
+      // inputArr:
+    // })
   }
 
   render () {

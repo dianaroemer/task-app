@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import reportWebVitals from '../reportWebVitals';
-// import Hashids from 'hashids';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCoffee, faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+
+
+library.add(faCoffee, faTrash, faPenToSquare);
+
 
 
 class Overview extends Component {
@@ -18,7 +24,6 @@ class Overview extends Component {
         let rows = [];
 
         this.props.inputArr.map((inputElement) => {
-            console.log(inputElement);
             rows.push(
                 <ListElement 
                   element={inputElement.text} key={inputElement.id} number={inputElement.number} />
@@ -46,8 +51,11 @@ class Overview extends Component {
 
 class ListElement extends Component {
     render () {
-        console.log(this.props);
-        return <div className="inputListElement">{this.props.number}: {this.props.element}</div>
+        const trash = <FontAwesomeIcon icon="fa-solid fa-trash" />;
+        const edit = <FontAwesomeIcon icon="fa-solid fa-pen-to-square" />
+        return <div className="inputListElement">
+            {this.props.number}: {this.props.element} {trash} {edit}
+        </div>
     }
 }
 
