@@ -13,12 +13,13 @@ class App extends Component {
 
       this.state = {
         inputArr: [
-          {text: 'test 1', id: uniqid()},
-          {text: 'test 2', id: uniqid()},
+          {text: 'test 1', id: uniqid(), number: 0},
+          {text: 'test 2', id: uniqid(), number: 1},
         ],
         task: {
           id: uniqid(),
           text: '',
+          number: 3,
         }
         
       };
@@ -29,6 +30,7 @@ class App extends Component {
       task: {
         text: newInputText,
         id: this.state.task.id,
+        number: this.state.task.number,
       }
     })
   }
@@ -41,7 +43,8 @@ class App extends Component {
         inputArr: this.state.inputArr.concat(this.state.task),
         task: {
           text: '',
-          id: uniqid()
+          id: uniqid(),
+          number: this.state.task.number + 1,
         },
       })
     }
@@ -55,8 +58,7 @@ class App extends Component {
           <Overview title="Content Container" 
             onButtonClick={this.onClickBtn} 
             updateInput={this.updateInput}
-            inputArr={this.state.inputArr}
-            input={this.state.task.text}/>
+            inputArr={this.state.inputArr}/>
             
         </div>
     );

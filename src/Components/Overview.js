@@ -18,9 +18,10 @@ class Overview extends Component {
         let rows = [];
 
         this.props.inputArr.map((inputElement) => {
+            console.log(inputElement);
             rows.push(
                 <ListElement 
-                  element={inputElement.text} key={inputElement.id} />
+                  element={inputElement.text} key={inputElement.id} number={inputElement.number} />
             );
         });
 
@@ -45,7 +46,8 @@ class Overview extends Component {
 
 class ListElement extends Component {
     render () {
-        return <li className="inputListElement">{this.props.element}</li>
+        console.log(this.props);
+        return <div className="inputListElement">{this.props.number}: {this.props.element}</div>
     }
 }
 
