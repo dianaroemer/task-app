@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import reportWebVitals from '../reportWebVitals';
+// const keyIndex = require('react-key-index')
+// import keyIndex from 'react-key-index'
+// import Hashids from 'hashids';
+
 
 class Overview extends Component {
     constructor(props) {
         super(props);
-
+        // this.hashids = new Hashids();
         this.handleUpdateInput = this.handleUpdateInput.bind(this);
     }
 
@@ -25,6 +29,14 @@ class Overview extends Component {
                   element={inputElement} key={inputElement} />
             );
         });
+
+        // let keyedRows = [...this.props.inputArr];
+        // keyedRows = keyIndex(keyedRows, 1);
+
+        // const list = keyedRows.map((keyedRows) => {
+            // <ListElement key={keyedRows.id}
+            //    element={keyedRows.value} />
+        // })
 
         return (
             <div className="Overview">
