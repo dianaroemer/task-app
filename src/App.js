@@ -2,45 +2,49 @@ import logo from './logo.svg';
 import './App.css';
 import React, { Component } from 'react'
 import Overview from './Components/Overview'
+import uniqid from 'uniqid'
 
 class App extends Component {
   constructor(props) {
       super(props);
 
       this.onClickBtn = this.onClickBtn.bind(this);
-      this.pushToInputArr = this.pushToInputArr.bind(this);
       this.updateInput = this.updateInput.bind(this);
 
       this.state = {
-        inputText: '',
-        inputArr: ['test 1', 'test 2', 'test3'],
+        inputArr: [
+          {text: 'test 1', id: uniqid()},
+          {text: 'test 2', id: uniqid()},
+        ],
+        task: {
+          id: uniqid(),
+          text: '',
+        }
+        
       };
-  }
-
-  pushToInputArr(content) {
-    // let newArr = this.state.inputArr;
-    // newArr.push(content);
-    this.setState({
-      inputArr: this.state.inputArr.concat(content),
-    });
-    console.log(this.state.inputArr)
   }
 
   updateInput(newInputText) {
     this.setState({
-      inputText: newInputText,
+      task: {
+        text: newInputText,
+        id: this.state.task.id,
+      }
     })
   }
 
   onClickBtn(e) {
     e.preventDefault();
-    // console.log('Button has been clicked!');
-    // console.log(e);
-    // console.log(this.state.input);
-    // console.log(e.target.form[0].value);
         
-    if(this.state.inputText !=='') {
-      this.pushToInputArr(this.state.inputText);
+    if(this.state.task.text !== '') {
+      console.log(this.state.task);
+      this.setState({
+        inputArr: this.state.inputArr.concat(this.state.task),
+        task: {
+          text: '',
+          id: uniqid()
+        },
+      })
     }
   }
 
@@ -53,7 +57,7 @@ class App extends Component {
             onButtonClick={this.onClickBtn} 
             updateInput={this.updateInput}
             inputArr={this.state.inputArr}
-            input={this.state.inputText}/>
+            input={this.state.task.text}/>
             
         </div>
     );

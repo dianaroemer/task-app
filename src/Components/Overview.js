@@ -20,7 +20,7 @@ class Overview extends Component {
         this.props.inputArr.map((inputElement) => {
             rows.push(
                 <ListElement 
-                  element={inputElement} key={inputElement} />
+                  element={inputElement.text} key={inputElement.id} />
             );
         });
 
