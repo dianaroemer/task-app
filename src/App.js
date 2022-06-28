@@ -18,10 +18,10 @@ class App extends Component {
   }
 
   pushToInputArr(content) {
-    let newArr = this.state.inputArr;
-    newArr.push(content);
+    // let newArr = this.state.inputArr;
+    // newArr.push(content);
     this.setState({
-      inputArr: newArr,
+      inputArr: this.state.inputArr.concat(content),
     });
     console.log(this.state.inputArr)
   }
@@ -51,8 +51,8 @@ class App extends Component {
           <h2>I am App.js, whats happening!</h2>
           <Overview title="Content Container" 
             onButtonClick={this.onClickBtn} 
-            inputArr={this.state.inputArr}
             updateInput={this.updateInput}
+            inputArr={this.state.inputArr}
             input={this.state.inputText}/>
             
         </div>

@@ -44,10 +44,6 @@ class Overview extends Component {
 }
 
 class ListElement extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     render () {
         return <li className="inputListElement">{this.props.element}</li>
     }
