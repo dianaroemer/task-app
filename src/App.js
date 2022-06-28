@@ -2,7 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 import React, { Component } from 'react'
 import Overview from './Components/Overview'
-// import keyIndex from 'react-key-index';
 
 class App extends Component {
   constructor(props) {
@@ -31,11 +30,7 @@ class App extends Component {
     this.setState({
       inputText: newInputText,
     })
-    // console.log('Updating Input: ' + this.state.inputText);
-    // console.log(this.state.inputText.target.value);
   }
-
-
 
   onClickBtn(e) {
     e.preventDefault();
@@ -43,12 +38,7 @@ class App extends Component {
     // console.log(e);
     // console.log(this.state.input);
     // console.log(e.target.form[0].value);
-    /*
-    if(e.target.form[0].value !== '') {
-      this.pushToInputArr(e.target.form[0].value);
-    } 
-    */
-
+        
     if(this.state.inputText !=='') {
       this.pushToInputArr(this.state.inputText);
     }
@@ -64,26 +54,8 @@ class App extends Component {
             inputArr={this.state.inputArr}
             updateInput={this.updateInput}
             input={this.state.inputText}/>
-
+            
         </div>
-
-
-      // <div className="App">
-      //   <header className="App-header">
-      //     <img src={logo} className="App-logo" alt="logo" />
-      //     <p>
-      //       Edit <code>src/App.js</code> and save to reload.
-      //     </p>
-      //     <a
-      //       className="App-link"
-      //       href="https://reactjs.org"
-      //       target="_blank"
-      //       rel="noopener noreferrer"
-      //     >
-      //       Learn React
-      //     </a>
-      //   </header>
-      // </div>
     );
   }
 }
