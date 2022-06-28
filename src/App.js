@@ -27,9 +27,9 @@ class App extends Component {
     console.log(this.state.inputArr)
   }
 
-  updateInput(inputText) {
+  updateInput(newInputText) {
     this.setState({
-      inputText: inputText,
+      inputText: newInputText,
     })
     // console.log('Updating Input: ' + this.state.inputText);
     // console.log(this.state.inputText.target.value);

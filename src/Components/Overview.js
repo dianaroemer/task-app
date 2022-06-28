@@ -16,10 +16,6 @@ class Overview extends Component {
         this.props.updateInput(e.target.value);
     }
 
-
-
-
-
     render () {
         let rows = [];
 
