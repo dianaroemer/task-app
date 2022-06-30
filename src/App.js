@@ -22,7 +22,6 @@ class App extends Component {
         task: {
           id: uniqid(),
           text: '',
-          // number: (2),
         }, 
         isEdit: false
         
@@ -55,12 +54,6 @@ class App extends Component {
 
   clickDeleteTask(e, target) {
     e.preventDefault();
-    // console.log('You clicked a delete button');
-    // console.log(e);
-    // console.log(e.target.parentNode)
-    // console.log(target);
-    // console.log(this.state.inputArr)
-    // console.log(this.state.inputArr.filter(toDelete => toDelete === target));
 
     this.setState({
       inputArr: this.state.inputArr.filter(toDelete => toDelete !== target),
@@ -69,20 +62,6 @@ class App extends Component {
 
   clickEditTask(e, target) {
     e.preventDefault();
-    console.log('You clicked an edit button');
-    // console.log(target);
-
-    // const targetIndex = this.state.inputArr.indexOf(target);
-    // let newArray = [... this.state.inputArr]
-    // console.log(newArray[targetIndex]);
-    // newArray[targetIndex] = {
-    //   text: this.state.inputArr[targetIndex].text,
-    //   id: this.state.inputArr[targetIndex].id,
-    //   edit: !this.state.inputArr[targetIndex].edit,
-    // }
-    // this.setState({
-      // inputArr: newArray,
-    // })
     
     this.setState({
       inputArr: this.state.inputArr.map(targ => {
@@ -96,45 +75,9 @@ class App extends Component {
         return targ;
       })
     })
-
-    // console.log(this.state.task);
-    // this.setState({
-    //   inputArr: this.state.inputArr.filter(toDelete => toDelete !== target),
-    //   task: {
-    //     text: target.text,
-    //     id: target.id
-    //   },
-    //   isEdit: true
-    // })
-    // console.log(this.state.task)
-
   }
 
-  clickEditTask2(e, target) {
-    e.preventDefault();
-    console.log('You clicked an edit button');
-    console.log(target.text);
-
-    console.log(this.state.task);
-
-    this.setState({
-      inputArr: this.state.inputArr.filter(toDelete => toDelete !== target),
-      task: {
-        text: target.text,
-        id: target.id
-      },
-      isEdit: true
-    })
-
-    console.log(this.state.task)
-
-  }
-
-
-  liveEditTask(targetTask, updatedValue) {
-    console.log('Youre editing a task, this is a live update of it!');
-    console.log(targetTask.text);
-
+  liveEditTask(updatedValue, targetTask) {
     this.setState({
       inputArr: this.state.inputArr.map(element => {
         if(element === targetTask) {
@@ -149,7 +92,6 @@ class App extends Component {
       })
     })
   }
-
 
 
   render () {

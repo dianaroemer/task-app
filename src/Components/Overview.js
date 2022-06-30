@@ -1,30 +1,19 @@
 import React, { Component } from 'react'
 import reportWebVitals from '../reportWebVitals';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCoffee, faTrash, faPenToSquare, faCircleCheck } from '@fortawesome/free-solid-svg-icons'
+// import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTrash, faPenToSquare, faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
-
-library.add(faCoffee, faTrash, faPenToSquare, faCircleCheck);
-
-
+// library.add(faCoffee, faTrash, faPenToSquare, faCircleCheck);
 
 class Overview extends Component {
     constructor(props) {
         super(props);
-        // this.hashids = new Hashids();
         this.handleUpdateInput = this.handleUpdateInput.bind(this);
-        this.handleClickDelete = this.handleClickDelete.bind(this);
     }
 
     handleUpdateInput(e) {
         this.props.updateInput(e.target.value);
-    }
-
-    handleClickDelete(e) {
-        console.log('I am handleClickDelete');
-        console.log(e);
-        // this.props.clickDelete();
     }
 
     render () {
@@ -80,13 +69,7 @@ class Overview extends Component {
 }
 
 class ListElement extends Component {
-    constructor(props){
-        super(props);
-        // this.handleClickDelete = this.handleClickDelete.bind(this);
-    }
-
     render () {
-        // const trash = <FontAwesomeIcon icon="fa-solid fa-trash" />;
         return <div className="inputListElement">
             {this.props.number} : {this.props.element} - 
 
@@ -101,26 +84,14 @@ class EditElement extends Component {
         super(props);
 
         this.updateInput = this.updateInput.bind(this);
-
-        this.state = {
-            task: {
-               text: this.props.element,
-                id: this.props.id,
-            }
-        }
-
     }
 
     updateInput(e, incomingReference) {
-        console.log('new input');
-        console.log(e.target.value);
-        console.log(incomingReference);
-        this.props.liveEdit(incomingReference, e.target.value)
+        this.props.liveEdit(e.target.value, incomingReference)
 
     }
 
     render () {
-        // const trash = <FontAwesomeIcon icon="fa-solid fa-trash" />;
         return <div className="inputListElementEdit">
             <input value={this.props.element} onChange={(e) => this.updateInput(e, this.props.inputreference)}></input>
 
