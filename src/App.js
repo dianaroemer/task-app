@@ -12,6 +12,7 @@ class App extends Component {
       this.updateInput = this.updateInput.bind(this);
       this.clickDeleteTask = this.clickDeleteTask.bind(this);
       this.clickEditTask = this.clickEditTask.bind(this);
+      this.liveEditTask = this.liveEditTask.bind(this);
 
       this.state = {
         inputArr: [
@@ -83,7 +84,6 @@ class App extends Component {
       // inputArr: newArray,
     // })
     
-
     this.setState({
       inputArr: this.state.inputArr.map(targ => {
         if(targ === target) {
@@ -131,6 +131,27 @@ class App extends Component {
   }
 
 
+  liveEditTask(targetTask, updatedValue) {
+    console.log('Youre editing a task, this is a live update of it!');
+    console.log(targetTask.text);
+
+    this.setState({
+      inputArr: this.state.inputArr.map(element => {
+        if(element === targetTask) {
+          return {
+            text:updatedValue,
+            id: element.id,
+            edit: true,
+          }
+        } else {
+          return element;
+        }
+      })
+    })
+  }
+
+
+
   render () {
     return (
         <div className="App">
@@ -143,7 +164,8 @@ class App extends Component {
             inputText={this.state.task.text}
             isEdit={this.state.isEdit}
             clickDelete={this.clickDeleteTask}
-            clickEdit={this.clickEditTask}/>
+            clickEdit={this.clickEditTask}
+            liveEditTask={this.liveEditTask}/>
             
         </div>
     );

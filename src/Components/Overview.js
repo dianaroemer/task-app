@@ -53,7 +53,8 @@ class Overview extends Component {
                     number={number}
                     clickDelete={this.props.clickDelete}
                     clickEdit={this.props.clickEdit}
-                    inputreference={inputElement}/>
+                    inputreference={inputElement}
+                    liveEdit={this.props.liveEditTask}/>
                 );
                 number++;
             }
@@ -98,13 +99,30 @@ class ListElement extends Component {
 class EditElement extends Component {
     constructor(props){
         super(props);
-        // this.handleClickDelete = this.handleClickDelete.bind(this);
+
+        this.updateInput = this.updateInput.bind(this);
+
+        this.state = {
+            task: {
+               text: this.props.element,
+                id: this.props.id,
+            }
+        }
+
+    }
+
+    updateInput(e, incomingReference) {
+        console.log('new input');
+        console.log(e.target.value);
+        console.log(incomingReference);
+        this.props.liveEdit(incomingReference, e.target.value)
+
     }
 
     render () {
         // const trash = <FontAwesomeIcon icon="fa-solid fa-trash" />;
         return <div className="inputListElementEdit">
-            <input value={this.props.element}></input>
+            <input value={this.props.element} onChange={(e) => this.updateInput(e, this.props.inputreference)}></input>
 
             <FontAwesomeIcon icon={faTrash} onClick={(e) => this.props.clickDelete(e, this.props.inputreference)}></FontAwesomeIcon>
             <FontAwesomeIcon icon={faCircleCheck} onClick={(e) => this.props.clickEdit(e, this.props.inputreference)}></FontAwesomeIcon> 
