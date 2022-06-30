@@ -10,18 +10,20 @@ class App extends Component {
 
       this.onClickBtn = this.onClickBtn.bind(this);
       this.updateInput = this.updateInput.bind(this);
-      this.deleteTask = this.deleteTask.bind(this);
+      this.clickDeleteTask = this.clickDeleteTask.bind(this);
+      this.clickEditTask = this.clickEditTask.bind(this);
 
       this.state = {
         inputArr: [
-          {text: 'test 1', id: uniqid(), number: 0},
-          {text: 'test 2', id: uniqid(), number: 1},
+          {text: 'test 1', id: uniqid(),},
+          {text: 'test 2', id: uniqid(),},
         ],
         task: {
           id: uniqid(),
           text: '',
-          number: 3,
-        }
+          // number: (2),
+        }, 
+        isEdit: false
         
       };
   }
@@ -31,7 +33,7 @@ class App extends Component {
       task: {
         text: newInputText,
         id: this.state.task.id,
-        number: this.state.task.number,
+        // number: this.state.task.number,
       }
     })
   }
@@ -45,16 +47,46 @@ class App extends Component {
         task: {
           text: '',
           id: uniqid(),
-          number: this.state.task.number + 1,
+          // number: this.state.inputArr.length + 1,
         },
+        isEdit: false,
       })
     }
   }
 
-  deleteTask() {
-    // this.setState({
-      // inputArr:
-    // })
+  clickDeleteTask(e, target) {
+    e.preventDefault();
+    // console.log('You clicked a delete button');
+    // console.log(e);
+    // console.log(e.target.parentNode)
+    // console.log(target);
+    // console.log(this.state.inputArr)
+    // console.log(this.state.inputArr.filter(toDelete => toDelete === target));
+
+    this.setState({
+      inputArr: this.state.inputArr.filter(toDelete => toDelete !== target),
+    })
+  }
+
+  clickEditTask(e, target) {
+    e.preventDefault();
+    console.log('You clicked an edit button');
+    console.log(target.text);
+
+    console.log(this.state.task);
+
+    this.setState({
+      inputArr: this.state.inputArr.filter(toDelete => toDelete !== target),
+      task: {
+        text: target.text,
+        id: target.id
+      },
+      isEdit: true
+    })
+
+    console.log(this.state.task)
+
+
   }
 
   render () {
@@ -65,7 +97,11 @@ class App extends Component {
           <Overview title="Content Container" 
             onButtonClick={this.onClickBtn} 
             updateInput={this.updateInput}
-            inputArr={this.state.inputArr}/>
+            inputArr={this.state.inputArr}
+            inputText={this.state.task.text}
+            isEdit={this.state.isEdit}
+            clickDelete={this.clickDeleteTask}
+            clickEdit={this.clickEditTask}/>
             
         </div>
     );
