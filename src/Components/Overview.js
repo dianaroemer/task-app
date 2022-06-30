@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import reportWebVitals from '../reportWebVitals';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCoffee, faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faTrash, faPenToSquare, faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
 
-library.add(faCoffee, faTrash, faPenToSquare);
+library.add(faCoffee, faTrash, faPenToSquare, faCircleCheck);
 
 
 
@@ -32,16 +32,31 @@ class Overview extends Component {
         let number = 0;
 
         this.props.inputArr.map((inputElement) => {
-            rows.push(
-                <ListElement 
-                  element={inputElement.text} 
-                  key={inputElement.id} 
-                  number={number}
-                  clickDelete={this.props.clickDelete}
-                  clickEdit={this.props.clickEdit}
-                  inputreference={inputElement}/>
-            );
-            number++;
+            if(!inputElement.edit){
+                rows.push(
+                    <ListElement 
+                    element={inputElement.text} 
+                    key={inputElement.id} 
+                    edit={inputElement.edit}
+                    number={number}
+                    clickDelete={this.props.clickDelete}
+                    clickEdit={this.props.clickEdit}
+                    inputreference={inputElement}/>
+                );
+                number++;
+            } else {
+                rows.push(
+                    <EditElement 
+                    element={inputElement.text} 
+                    key={inputElement.id} 
+                    edit={inputElement.edit}
+                    number={number}
+                    clickDelete={this.props.clickDelete}
+                    clickEdit={this.props.clickEdit}
+                    inputreference={inputElement}/>
+                );
+                number++;
+            }
         });
 
         return (
@@ -69,17 +84,8 @@ class ListElement extends Component {
         // this.handleClickDelete = this.handleClickDelete.bind(this);
     }
 
-    // handleClickDelete(e) {
-    //     // console.log('I am handleClickDelete');
-    //     console.log(e);
-    //     // console.log(target);
-    //     console.log(e.target.value)
-    //     // this.props.clickDelete();
-    // }
-
     render () {
         // const trash = <FontAwesomeIcon icon="fa-solid fa-trash" />;
-        const edit = <FontAwesomeIcon icon="fa-solid fa-pen-to-square" />
         return <div className="inputListElement">
             {this.props.number} : {this.props.element} - 
 
@@ -88,6 +94,24 @@ class ListElement extends Component {
         </div>
     }
 }
+
+class EditElement extends Component {
+    constructor(props){
+        super(props);
+        // this.handleClickDelete = this.handleClickDelete.bind(this);
+    }
+
+    render () {
+        // const trash = <FontAwesomeIcon icon="fa-solid fa-trash" />;
+        return <div className="inputListElementEdit">
+            <input value={this.props.element}></input>
+
+            <FontAwesomeIcon icon={faTrash} onClick={(e) => this.props.clickDelete(e, this.props.inputreference)}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faCircleCheck} onClick={(e) => this.props.clickEdit(e, this.props.inputreference)}></FontAwesomeIcon> 
+        </div>
+    }
+}
+
 
 
 export default Overview;

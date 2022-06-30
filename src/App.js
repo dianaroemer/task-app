@@ -15,8 +15,8 @@ class App extends Component {
 
       this.state = {
         inputArr: [
-          {text: 'test 1', id: uniqid(),},
-          {text: 'test 2', id: uniqid(),},
+          {text: 'test 1', id: uniqid(),edit: false},
+          {text: 'test 2', id: uniqid(),edit: false},
         ],
         task: {
           id: uniqid(),
@@ -69,6 +69,50 @@ class App extends Component {
   clickEditTask(e, target) {
     e.preventDefault();
     console.log('You clicked an edit button');
+    // console.log(target);
+
+    // const targetIndex = this.state.inputArr.indexOf(target);
+    // let newArray = [... this.state.inputArr]
+    // console.log(newArray[targetIndex]);
+    // newArray[targetIndex] = {
+    //   text: this.state.inputArr[targetIndex].text,
+    //   id: this.state.inputArr[targetIndex].id,
+    //   edit: !this.state.inputArr[targetIndex].edit,
+    // }
+    // this.setState({
+      // inputArr: newArray,
+    // })
+    
+
+    this.setState({
+      inputArr: this.state.inputArr.map(targ => {
+        if(targ === target) {
+          return {
+            text: targ.text,
+            id: targ.id,
+            edit: !targ.edit,
+          }
+        }
+        return targ;
+      })
+    })
+
+    // console.log(this.state.task);
+    // this.setState({
+    //   inputArr: this.state.inputArr.filter(toDelete => toDelete !== target),
+    //   task: {
+    //     text: target.text,
+    //     id: target.id
+    //   },
+    //   isEdit: true
+    // })
+    // console.log(this.state.task)
+
+  }
+
+  clickEditTask2(e, target) {
+    e.preventDefault();
+    console.log('You clicked an edit button');
     console.log(target.text);
 
     console.log(this.state.task);
@@ -84,8 +128,8 @@ class App extends Component {
 
     console.log(this.state.task)
 
-
   }
+
 
   render () {
     return (
