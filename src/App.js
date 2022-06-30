@@ -33,7 +33,6 @@ class App extends Component {
       task: {
         text: newInputText,
         id: this.state.task.id,
-        // number: this.state.task.number,
       }
     })
   }
@@ -47,7 +46,6 @@ class App extends Component {
         task: {
           text: '',
           id: uniqid(),
-          // number: this.state.inputArr.length + 1,
         },
         isEdit: false,
       })
